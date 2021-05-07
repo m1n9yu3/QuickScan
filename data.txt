@@ -1,0 +1,15 @@
+{
+"OpenWrt":"openwrt",
+"EVE":"Eve 模拟器",
+"Index of /":"文件共享服务器",
+"ikuai8.com":"爱快路由器",
+"ASUS":"ASUS 路由器",
+"TL-WDR5660":"TP-link 路由器管理地址",
+"靶场":"靶场",
+"Seafile Server":"SeaFile 文件共享服务器",
+"ZKPanelWeb": "中控考勤机web页面",
+"IIS":"iis 欢迎界面",
+"在线实训系统":"在线实训系统",
+"EduSoho":"在线教育平台",
+"管理系统":"xx管理系统"
+}
