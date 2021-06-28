@@ -17,6 +17,7 @@ arg.add_argument('ip', type=str, help='ip地址/子网掩码位数, 样例: 10.0
 socket.setdefaulttimeout(0.001)
 config = 'data.txt'
 
+
 def scan(ip):
     headers = {
         "User-Agent": "Chrome (AppleWebKit/537.1; Chrome50.0; Windows NT 6.3; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)"}
@@ -26,6 +27,21 @@ def scan(ip):
         # print(url)
         response = requests.get(url=url, headers=headers, verify=False, timeout=2)
         content = response.content.decode('utf-8')
+
+        re_list = [
+            "top.location.href='(.*?)';",
+            'content="0; *URL=(.*?)"'
+        ]
+
+        for i in re_list:
+            res = re.findall(i, content)
+            if res:
+                url = url + res[0].replace("'", "")
+                response = requests.get(url=url, headers=headers, verify=False, timeout=2)
+                content = response.content.decode('utf-8')
+                # print(content)
+                break
+
         with open(file=config, mode='r', encoding="utf-8") as f:
             dictdata = dict(json.load(fp=f))
             keylist = list(dictdata.keys())
@@ -35,6 +51,7 @@ def scan(ip):
                     print("%s, 是: %s" % (ip, dictdata[i]))
                     break
             else:
+                # print("\nip:%s\n%s" % (response.url, response.content.decode("utf-8")))
                 print("%s： 无法判断网页类型" % ip)
             # print(response.content.decode("utf-8"))
     except Exception as e:
@@ -123,8 +140,9 @@ def main(ipaddr):
 
 
 if __name__ == '__main__':
-    args = arg.parse_args()
-    ip = args.ip
-    # print(ip)
-    main(ip)
+    main("192.168.66.0/24")
+    # args = arg.parse_args()
+    # ip = args.ip
+    # # print(ip)
+    # main(ip)
     # scan('10.0.0.88')

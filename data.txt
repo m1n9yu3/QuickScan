@@ -11,5 +11,8 @@
 "IIS":"iis 欢迎界面",
 "在线实训系统":"在线实训系统",
 "EduSoho":"在线教育平台",
+"Nextcloud":"Nextcloud网盘",
+"HDM":"HDM管理系统",
+"esxUiApp":"esxi",
 "管理系统":"xx管理系统"
 }
